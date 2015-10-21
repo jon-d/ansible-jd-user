@@ -1,0 +1,37 @@
+ansible-rezo-user
+=================
+
+Ansible role for user management.
+
+
+Usage
+-----
+
+Every user should have a ssh key in the `ssh_keys` directory at the root
+of ansible configuration directory.
+
+To create a sudoer user on every servers put in a playbook somethink
+like :
+
+    - hosts: all
+      roles:
+	  - { role: user, user_name: "somebody", user_sudoer: True }
+
+
+Configuration
+-------------
+
+    - user_name: name of the account to create, mandatory,
+    - user_sudoer: boolean, default to False, not mandatory.
+
+
+Git submodules usage
+--------------------
+
+Install this role as a submodule:
+
+    cd ansible-conf
+    git submodule add git@git.rezoloco.com:ansible-rezo/ansible-rezo-user.git
+ roles/user
+    git commit -a
+
