@@ -7,6 +7,6 @@
     - "ssh_keys/{{ user_name }}.pub"
 
 - name: make {{ user_name }} sudoer
-  user: name {{ user_name }} append=yes groups=sudo
+  user: name={{ user_name }} append=yes groups=sudo
   when: user_sudoer
 
