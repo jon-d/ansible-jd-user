@@ -10,3 +10,6 @@
   user: name={{ user_name }} append=yes groups=sudo
   when: user_sudoer
 
+- name: sudo group members don't need a password
+  copy: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'
+
