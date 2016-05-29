@@ -1,0 +1,15 @@
+- name: create {{ user_name }} user
+  user: name={{ user_name }} state=present shell=/bin/bash
+
+- name: install ssh key for {{ user_name }}
+  authorized_key: user={{ user_name }} key="{{ item }}" state=present
+  with_file:
+    - "ssh_keys/{{ user_name }}.pub"
+
+- name: make {{ user_name }} sudoer
+  user: name={{ user_name }} append=yes groups=sudo
+  when: user_sudoer
+
+- name: sudo group members don't need a password
+  copy: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'
+
