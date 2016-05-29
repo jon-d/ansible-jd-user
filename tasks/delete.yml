@@ -1,0 +1,5 @@
+#- name: install ssh key for {{ user_name }}
+#  authorized_key: user={{ user_name }} state=absent
+#
+- name: delete {{ user_name }} user
+  user: name={{ user_name }} state=absent
