@@ -3,26 +3,33 @@ ansible-rezo-user
 
 Ansible role for user management.
 
+This role create and delete shell accounts with ssh access via ssh keys.
+
+The accounts created have a disabled password and no password management is
+provided.
+
 
 Usage
 -----
 
-Every user should have a ssh key in the `ssh_keys` directory at the root
-of ansible configuration directory.
+Every user to create should have a ssh key in the `ssh_keys` directory at the
+root of ansible configuration directory.
 
-To create a sudoer user on every servers put in a playbook somethink
-like :
+To create the sudoer account "somebody" and delete the account "someone" on
+every servers put in a playbook somethink like :
 
-    - hosts: all
-      roles:
-	  - { role: user, user_name: "somebody", user_sudoer: True }
+  - hosts: all
+    roles:
+      - { role: user, user_name: "somebody", user_sudoer: True }
+      - { role: user, user_name: "someone", delete: True }
 
 
 Configuration
 -------------
 
-    - user_name: name of the account to create, mandatory,
+    - user_name: name of the account to create or delete, mandatory,
     - user_sudoer: boolean, default to False, not mandatory.
+    - delete: boolean, to delete an account.
 
 
 Git submodules usage
@@ -31,7 +38,6 @@ Git submodules usage
 Install this role as a submodule:
 
     cd ansible-conf
-    git submodule add git@git.rezoloco.com:ansible-rezo/ansible-rezo-user.git
- roles/user
+    git submodule add git@git.rezoloco.com:ansible-rezo/ansible-rezo-user.git roles/user
     git commit -a
 
