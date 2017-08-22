@@ -1,5 +1,5 @@
 ansible-jd-user
-=================
+=======
 
 Ansible role for user management.
 
@@ -29,6 +29,7 @@ Configuration
 
     - user_name: name of the account to create or delete, mandatory,
     - user_sudoer: boolean, default to False, not mandatory.
+    - user_system: create a system user, defaults to False, not mandatory,
     - delete: boolean, to delete an account.
 
 
